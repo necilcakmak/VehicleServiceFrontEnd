@@ -36,13 +36,13 @@ const InvoiceCreate = ({ user }) => {
     quantity: null,
     vehiclePartId: null,
   });
-  const { customerId, companyPersonId, description, payment, invoiceDate } = form;
+  const { customerId,CompanyPersonId, description, payment, invoiceDate } = form;
   const { vehiclePartId, quantity } = productForm;
   const onSubmit = async e => {
     e.preventDefault();
     const cred = {
       customerId,
-      companyPersonId,
+      CompanyPersonId,
       description,
       payment,
       invoiceProducts,
@@ -58,7 +58,6 @@ const InvoiceCreate = ({ user }) => {
       alertify.error('Kayıt Başarısız!');
     }
     setPendingApiCall(false);
-    console.log(cred);
   };
   const onChange = e => {
     const { name, value } = e.target;
@@ -81,7 +80,7 @@ const InvoiceCreate = ({ user }) => {
   const addProduct = () => {
     if (invoiceProducts.filter(x => x.vehiclePartId === productForm.vehiclePartId).length > 0) {
       var model = invoiceProducts.filter(x => x.vehiclePartId === productForm.vehiclePartId)[0];
-      var array = invoiceProducts.filter(x => x.vehiclePartId !== productForm.vehiclePartId); // make a separate copy of the array
+      var array = invoiceProducts.filter(x => x.vehiclePartId !== productForm.vehiclePartId); 
       model.quantity += productForm.quantity;
       array.push(model);
       setInvoiceProducts(array);
